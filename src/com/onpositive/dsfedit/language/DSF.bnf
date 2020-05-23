@@ -1,0 +1,69 @@
+{
+  parserClass="com.onpositive.dsfedit.language.parser.DSFParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="DSF"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.onpositive.dsfedit.language.psi"
+  psiImplPackage="com.onpositive.dsfedit.language.psi.impl"
+
+  elementTypeHolderClass="com.onpositive.dsfedit.language.psi.DSFTypes"
+  elementTypeClass="com.onpositive.dsfedit.language.psi.DSFElementType"
+  tokenTypeClass="com.onpositive.dsfedit.language.psi.DSFTokenType"
+
+  psiImplUtilClass="com.onpositive.dsfedit.language.psi.impl.DSFPsiImplUtil"
+  tokens = [
+    OBJECT_DEF_KEYWORD='OBJECT_DEF'
+    POLYGON_DEF_KEYWORD='POLYGON_DEF'
+    NETWORK_DEF_KEYWORD='NETWORK_DEF'
+    PROPERTY_KEYWORD='PROPERTY'
+    OBJECT_KEYWORD='OBJECT'
+    BEGIN_POLYGON_KEYWORD='BEGIN_POLYGON'
+    END_POLYGON_KEYWORD='END_POLYGON'
+    BEGIN_WINDING_KEYWORD='BEGIN_WINDING'
+    END_WINDING_KEYWORD='END_WINDING'
+    POLYGON_POINT_KEYWORD='POLYGON_POINT'
+    BEGIN_SEGMENT_KEYWORD='BEGIN_SEGMENT'
+    END_SEGMEN_KEYWORD='END_SEGMENT'
+    SHAPE_POINT_KEYWORD='SHAPE_POINT'
+    SHAPE_POINT_CURVED_KEYWORD='SHAPE_POINT_CURVED'
+    I_KEYWORD='I'
+    A_KEYWORD='A'
+  ]
+
+}
+
+dsfFile ::= dsfHeader declarations entities
+
+ignored ::= comment | eol
+
+dsfHeader ::= ('I'|'A') eol int_num eol id eol
+
+declarations ::= properties object_defs polygon_defs network_defs
+
+properties ::= (property | ignored) *
+property ::= 'PROPERTY' space prop_id space value_string
+
+object_defs ::= (('OBJECT_DEF' space value_string) | ignored )*
+polygon_defs ::= (('POLYGON_DEF' space value_string) | ignored )*
+network_defs ::= (('NETWORK_DEF' space value_string) | ignored )*
+
+private entities ::= entity*
+entity ::= object | polygon | segment | eol
+
+object ::= 'OBJECT' space int_num space coords space float_num eol
+
+polygon ::= 'BEGIN_POLYGON' space polygon_header eol (polygon_winding)+ 'END_POLYGON' eol
+polygon_header ::= int_num space int_num space int_num
+polygon_winding ::= 'BEGIN_WINDING' eol polygon_point+ 'END_WINDING' eol
+polygon_point ::= 'POLYGON_POINT' space coords eol
+coords ::= float_num space float_num
+
+segment ::= 'BEGIN_SEGMENT' space segment_header space segment_coords eol segment_point* 'END_SEGMENT' space int_num space segment_coords eol
+segment_header ::= int_num space int_num space int_num
+segment_coords ::= coords space float_num
+segment_point ::= simple_point | curved_point
+simple_point ::= 'SHAPE_POINT' space coords space float_num eol
+curved_point ::= 'SHAPE_POINT_CURVED' space coords space float_num space coords space float_num eol
+
