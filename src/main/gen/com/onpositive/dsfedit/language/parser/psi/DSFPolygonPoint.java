@@ -7,7 +7,4 @@ import com.intellij.psi.PsiElement;
 
 public interface DSFPolygonPoint extends PsiElement {
 
-  @NotNull
-  DSFCoords getCoords();
-
 }

@@ -28,12 +28,6 @@ public class DSFSegmentImpl extends ASTWrapperPsiElement implements DSFSegment {
 
   @Override
   @NotNull
-  public List<DSFSegmentCoords> getSegmentCoordsList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, DSFSegmentCoords.class);
-  }
-
-  @Override
-  @NotNull
   public DSFSegmentHeader getSegmentHeader() {
     return findNotNullChildByClass(DSFSegmentHeader.class);
   }

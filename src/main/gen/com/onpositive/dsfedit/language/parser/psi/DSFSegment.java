@@ -8,9 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface DSFSegment extends PsiElement {
 
   @NotNull
-  List<DSFSegmentCoords> getSegmentCoordsList();
-
-  @NotNull
   DSFSegmentHeader getSegmentHeader();
 
   @NotNull

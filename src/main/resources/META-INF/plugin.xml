@@ -25,6 +25,8 @@
       <fileType name="DSF Source" implementationClass="com.onpositive.dsfedit.language.DSFFileType"
                 fieldName="INSTANCE" language="DSF" extensions="txt"/>
     <lang.parserDefinition language="DSF" implementationClass="com.onpositive.dsfedit.language.DSFParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="DSF"
+                                   implementationClass="com.onpositive.dsfedit.language.highlight.DSFHighlighterFactory"/>
   </extensions>
 
   <actions>

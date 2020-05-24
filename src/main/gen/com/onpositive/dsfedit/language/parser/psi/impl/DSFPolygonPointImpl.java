@@ -26,10 +26,4 @@ public class DSFPolygonPointImpl extends ASTWrapperPsiElement implements DSFPoly
     else super.accept(visitor);
   }
 
-  @Override
-  @NotNull
-  public DSFCoords getCoords() {
-    return findNotNullChildByClass(DSFCoords.class);
-  }
-
 }

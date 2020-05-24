@@ -26,10 +26,4 @@ public class DSFCurvedPointImpl extends ASTWrapperPsiElement implements DSFCurve
     else super.accept(visitor);
   }
 
-  @Override
-  @NotNull
-  public List<DSFCoords> getCoordsList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, DSFCoords.class);
-  }
-
 }

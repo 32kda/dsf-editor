@@ -26,10 +26,4 @@ public class DSFSimplePointImpl extends ASTWrapperPsiElement implements DSFSimpl
     else super.accept(visitor);
   }
 
-  @Override
-  @NotNull
-  public DSFCoords getCoords() {
-    return findNotNullChildByClass(DSFCoords.class);
-  }
-
 }

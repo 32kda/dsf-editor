@@ -11,14 +11,14 @@ import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.onpositive.dsfedit.language.parser.psi.*;
 
-public class DSFCoordsImpl extends ASTWrapperPsiElement implements DSFCoords {
+public class DSFObjectDefImpl extends ASTWrapperPsiElement implements DSFObjectDef {
 
-  public DSFCoordsImpl(@NotNull ASTNode node) {
+  public DSFObjectDefImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DSFVisitor visitor) {
-    visitor.visitCoords(this);
+    visitor.visitObjectDef(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {

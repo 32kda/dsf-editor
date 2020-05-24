@@ -7,7 +7,4 @@ import com.intellij.psi.PsiElement;
 
 public interface DSFCurvedPoint extends PsiElement {
 
-  @NotNull
-  List<DSFCoords> getCoordsList();
-
 }

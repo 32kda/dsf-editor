@@ -26,10 +26,4 @@ public class DSFObjectImpl extends ASTWrapperPsiElement implements DSFObject {
     else super.accept(visitor);
   }
 
-  @Override
-  @NotNull
-  public DSFCoords getCoords() {
-    return findNotNullChildByClass(DSFCoords.class);
-  }
-
 }

@@ -38,18 +38,21 @@
 
 dsfFile ::= dsfHeader declarations entities
 
-ignored ::= comment | eol
+private ignored ::= comment | eol
 
 dsfHeader ::= ('I'|'A') eol int_num eol id eol
 
-declarations ::= properties object_defs polygon_defs network_defs
+private declarations ::= properties object_defs polygon_defs network_defs
 
-properties ::= (property | ignored) *
+private properties ::= (property | ignored) *
 property ::= 'PROPERTY' space? prop_id value_string
 
-object_defs ::= (('OBJECT_DEF'  value_string) | ignored )*
-polygon_defs ::= (('POLYGON_DEF'  value_string) | ignored )*
-network_defs ::= (('NETWORK_DEF'  value_string) | ignored )*
+private object_defs ::= (object_def | ignored )*
+object_def ::= 'OBJECT_DEF'  value_string
+private polygon_defs ::= (polygon_def | ignored )*
+polygon_def ::= 'POLYGON_DEF'  value_string
+private network_defs ::= (network_def | ignored )*
+network_def ::= 'NETWORK_DEF'  value_string
 
 private entities ::= entity*
 entity ::= object | polygon | segment | eol
@@ -60,11 +63,11 @@ polygon ::= 'BEGIN_POLYGON'  polygon_header eol (polygon_winding)+ 'END_POLYGON'
 polygon_header ::= int_num  int_num  int_num
 polygon_winding ::= 'BEGIN_WINDING' eol polygon_point+ 'END_WINDING' eol
 polygon_point ::= 'POLYGON_POINT'  coords eol
-coords ::= float_num  float_num
+private coords ::= float_num  float_num
 
 segment ::= 'BEGIN_SEGMENT'  segment_header  segment_coords eol segment_point* 'END_SEGMENT'  int_num  segment_coords eol
 segment_header ::= int_num  int_num  int_num
-segment_coords ::= coords  float_num
+private segment_coords ::= coords  float_num
 segment_point ::= simple_point | curved_point
 simple_point ::= 'SHAPE_POINT'  coords  float_num eol
 curved_point ::= 'SHAPE_POINT_CURVED'  coords  float_num  coords  float_num eol

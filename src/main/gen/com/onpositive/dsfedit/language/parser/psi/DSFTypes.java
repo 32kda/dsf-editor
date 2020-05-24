@@ -10,24 +10,19 @@ import com.onpositive.dsfedit.language.parser.psi.impl.*;
 
 public interface DSFTypes {
 
-  IElementType COORDS = new DSFElementType("COORDS");
   IElementType CURVED_POINT = new DSFElementType("CURVED_POINT");
-  IElementType DECLARATIONS = new DSFElementType("DECLARATIONS");
   IElementType DSF_HEADER = new DSFElementType("DSF_HEADER");
   IElementType ENTITY = new DSFElementType("ENTITY");
-  IElementType IGNORED = new DSFElementType("IGNORED");
-  IElementType NETWORK_DEFS = new DSFElementType("NETWORK_DEFS");
+  IElementType NETWORK_DEF = new DSFElementType("NETWORK_DEF");
   IElementType OBJECT = new DSFElementType("OBJECT");
-  IElementType OBJECT_DEFS = new DSFElementType("OBJECT_DEFS");
+  IElementType OBJECT_DEF = new DSFElementType("OBJECT_DEF");
   IElementType POLYGON = new DSFElementType("POLYGON");
-  IElementType POLYGON_DEFS = new DSFElementType("POLYGON_DEFS");
+  IElementType POLYGON_DEF = new DSFElementType("POLYGON_DEF");
   IElementType POLYGON_HEADER = new DSFElementType("POLYGON_HEADER");
   IElementType POLYGON_POINT = new DSFElementType("POLYGON_POINT");
   IElementType POLYGON_WINDING = new DSFElementType("POLYGON_WINDING");
-  IElementType PROPERTIES = new DSFElementType("PROPERTIES");
   IElementType PROPERTY = new DSFElementType("PROPERTY");
   IElementType SEGMENT = new DSFElementType("SEGMENT");
-  IElementType SEGMENT_COORDS = new DSFElementType("SEGMENT_COORDS");
   IElementType SEGMENT_HEADER = new DSFElementType("SEGMENT_HEADER");
   IElementType SEGMENT_POINT = new DSFElementType("SEGMENT_POINT");
   IElementType SIMPLE_POINT = new DSFElementType("SIMPLE_POINT");
@@ -60,14 +55,8 @@ public interface DSFTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == COORDS) {
-        return new DSFCoordsImpl(node);
-      }
-      else if (type == CURVED_POINT) {
+      if (type == CURVED_POINT) {
         return new DSFCurvedPointImpl(node);
-      }
-      else if (type == DECLARATIONS) {
-        return new DSFDeclarationsImpl(node);
       }
       else if (type == DSF_HEADER) {
         return new DSFDsfHeaderImpl(node);
@@ -75,23 +64,20 @@ public interface DSFTypes {
       else if (type == ENTITY) {
         return new DSFEntityImpl(node);
       }
-      else if (type == IGNORED) {
-        return new DSFIgnoredImpl(node);
-      }
-      else if (type == NETWORK_DEFS) {
-        return new DSFNetworkDefsImpl(node);
+      else if (type == NETWORK_DEF) {
+        return new DSFNetworkDefImpl(node);
       }
       else if (type == OBJECT) {
         return new DSFObjectImpl(node);
       }
-      else if (type == OBJECT_DEFS) {
-        return new DSFObjectDefsImpl(node);
+      else if (type == OBJECT_DEF) {
+        return new DSFObjectDefImpl(node);
       }
       else if (type == POLYGON) {
         return new DSFPolygonImpl(node);
       }
-      else if (type == POLYGON_DEFS) {
-        return new DSFPolygonDefsImpl(node);
+      else if (type == POLYGON_DEF) {
+        return new DSFPolygonDefImpl(node);
       }
       else if (type == POLYGON_HEADER) {
         return new DSFPolygonHeaderImpl(node);
@@ -102,17 +88,11 @@ public interface DSFTypes {
       else if (type == POLYGON_WINDING) {
         return new DSFPolygonWindingImpl(node);
       }
-      else if (type == PROPERTIES) {
-        return new DSFPropertiesImpl(node);
-      }
       else if (type == PROPERTY) {
         return new DSFPropertyImpl(node);
       }
       else if (type == SEGMENT) {
         return new DSFSegmentImpl(node);
-      }
-      else if (type == SEGMENT_COORDS) {
-        return new DSFSegmentCoordsImpl(node);
       }
       else if (type == SEGMENT_HEADER) {
         return new DSFSegmentHeaderImpl(node);

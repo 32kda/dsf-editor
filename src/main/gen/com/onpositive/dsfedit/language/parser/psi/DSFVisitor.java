@@ -7,15 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public class DSFVisitor extends PsiElementVisitor {
 
-  public void visitCoords(@NotNull DSFCoords o) {
-    visitPsiElement(o);
-  }
-
   public void visitCurvedPoint(@NotNull DSFCurvedPoint o) {
-    visitPsiElement(o);
-  }
-
-  public void visitDeclarations(@NotNull DSFDeclarations o) {
     visitPsiElement(o);
   }
 
@@ -27,11 +19,7 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitIgnored(@NotNull DSFIgnored o) {
-    visitPsiElement(o);
-  }
-
-  public void visitNetworkDefs(@NotNull DSFNetworkDefs o) {
+  public void visitNetworkDef(@NotNull DSFNetworkDef o) {
     visitPsiElement(o);
   }
 
@@ -39,7 +27,7 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitObjectDefs(@NotNull DSFObjectDefs o) {
+  public void visitObjectDef(@NotNull DSFObjectDef o) {
     visitPsiElement(o);
   }
 
@@ -47,7 +35,7 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitPolygonDefs(@NotNull DSFPolygonDefs o) {
+  public void visitPolygonDef(@NotNull DSFPolygonDef o) {
     visitPsiElement(o);
   }
 
@@ -63,19 +51,11 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitProperties(@NotNull DSFProperties o) {
-    visitPsiElement(o);
-  }
-
   public void visitProperty(@NotNull DSFProperty o) {
     visitPsiElement(o);
   }
 
   public void visitSegment(@NotNull DSFSegment o) {
-    visitPsiElement(o);
-  }
-
-  public void visitSegmentCoords(@NotNull DSFSegmentCoords o) {
     visitPsiElement(o);
   }
 
