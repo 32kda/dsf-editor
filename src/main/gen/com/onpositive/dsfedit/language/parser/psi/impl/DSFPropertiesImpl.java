@@ -11,19 +11,25 @@ import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.onpositive.dsfedit.language.parser.psi.*;
 
-public class DSFPolygonHeaderImpl extends ASTWrapperPsiElement implements DSFPolygonHeader {
+public class DSFPropertiesImpl extends ASTWrapperPsiElement implements DSFProperties {
 
-  public DSFPolygonHeaderImpl(@NotNull ASTNode node) {
+  public DSFPropertiesImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DSFVisitor visitor) {
-    visitor.visitPolygonHeader(this);
+    visitor.visitProperties(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DSFVisitor) accept((DSFVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public List<DSFProperty> getPropertyList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DSFProperty.class);
   }
 
 }

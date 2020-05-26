@@ -27,6 +27,8 @@
     <lang.parserDefinition language="DSF" implementationClass="com.onpositive.dsfedit.language.DSFParserDefinition"/>
     <lang.syntaxHighlighterFactory language="DSF"
                                    implementationClass="com.onpositive.dsfedit.language.highlight.DSFHighlighterFactory"/>
+    <colorSettingsPage implementation="com.onpositive.dsfedit.language.highlight.DSFColorSettingsPage"/>
+    <psi.referenceContributor implementation="com.onpositive.dsfedit.language.DSFReferenceContributor"/>
   </extensions>
 
   <actions>

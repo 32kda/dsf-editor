@@ -11,14 +11,14 @@ import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.onpositive.dsfedit.language.parser.psi.*;
 
-public class DSFEntityImpl extends ASTWrapperPsiElement implements DSFEntity {
+public class DSFNetworkDefsImpl extends ASTWrapperPsiElement implements DSFNetworkDefs {
 
-  public DSFEntityImpl(@NotNull ASTNode node) {
+  public DSFNetworkDefsImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DSFVisitor visitor) {
-    visitor.visitEntity(this);
+    visitor.visitNetworkDefs(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -27,21 +27,9 @@ public class DSFEntityImpl extends ASTWrapperPsiElement implements DSFEntity {
   }
 
   @Override
-  @Nullable
-  public DSFObject getObject() {
-    return findChildByClass(DSFObject.class);
-  }
-
-  @Override
-  @Nullable
-  public DSFPolygon getPolygon() {
-    return findChildByClass(DSFPolygon.class);
-  }
-
-  @Override
-  @Nullable
-  public DSFSegment getSegment() {
-    return findChildByClass(DSFSegment.class);
+  @NotNull
+  public List<DSFNetworkDef> getNetworkDefList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DSFNetworkDef.class);
   }
 
 }

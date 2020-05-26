@@ -11,25 +11,19 @@ import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.onpositive.dsfedit.language.parser.psi.*;
 
-public class DSFObjectImpl extends ASTWrapperPsiElement implements DSFObject {
+public class DSFIntRefImpl extends ASTWrapperPsiElement implements DSFIntRef {
 
-  public DSFObjectImpl(@NotNull ASTNode node) {
+  public DSFIntRefImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DSFVisitor visitor) {
-    visitor.visitObject(this);
+    visitor.visitIntRef(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DSFVisitor) accept((DSFVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public DSFIntRef getIntRef() {
-    return findNotNullChildByClass(DSFIntRef.class);
   }
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DSFObject extends PsiElement {
+public interface DSFPolygonRef extends PsiElement {
 
   @NotNull
   DSFIntRef getIntRef();

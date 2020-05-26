@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface DSFPolygonDefs extends PsiElement {
 
   @NotNull
-  List<DSFIgnored> getIgnoredList();
+  List<DSFPolygonDef> getPolygonDefList();
 
 }

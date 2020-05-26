@@ -11,14 +11,14 @@ import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.onpositive.dsfedit.language.parser.psi.*;
 
-public class DSFObjectImpl extends ASTWrapperPsiElement implements DSFObject {
+public class DSFObjectDefsImpl extends ASTWrapperPsiElement implements DSFObjectDefs {
 
-  public DSFObjectImpl(@NotNull ASTNode node) {
+  public DSFObjectDefsImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DSFVisitor visitor) {
-    visitor.visitObject(this);
+    visitor.visitObjectDefs(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -28,8 +28,8 @@ public class DSFObjectImpl extends ASTWrapperPsiElement implements DSFObject {
 
   @Override
   @NotNull
-  public DSFIntRef getIntRef() {
-    return findNotNullChildByClass(DSFIntRef.class);
+  public List<DSFObjectDef> getObjectDefList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DSFObjectDef.class);
   }
 
 }

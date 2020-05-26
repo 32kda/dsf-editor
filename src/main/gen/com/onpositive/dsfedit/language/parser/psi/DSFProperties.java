@@ -8,9 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface DSFProperties extends PsiElement {
 
   @NotNull
-  List<DSFIgnored> getIgnoredList();
-
-  @NotNull
   List<DSFProperty> getPropertyList();
 
 }

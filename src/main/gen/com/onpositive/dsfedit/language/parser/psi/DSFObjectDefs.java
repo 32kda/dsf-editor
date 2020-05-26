@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface DSFObjectDefs extends PsiElement {
 
   @NotNull
-  List<DSFIgnored> getIgnoredList();
+  List<DSFObjectDef> getObjectDefList();
 
 }

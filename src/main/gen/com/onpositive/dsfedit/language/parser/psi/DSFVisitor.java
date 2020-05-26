@@ -15,11 +15,15 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitEntity(@NotNull DSFEntity o) {
+  public void visitIntRef(@NotNull DSFIntRef o) {
     visitPsiElement(o);
   }
 
   public void visitNetworkDef(@NotNull DSFNetworkDef o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNetworkDefs(@NotNull DSFNetworkDefs o) {
     visitPsiElement(o);
   }
 
@@ -31,6 +35,10 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitObjectDefs(@NotNull DSFObjectDefs o) {
+    visitPsiElement(o);
+  }
+
   public void visitPolygon(@NotNull DSFPolygon o) {
     visitPsiElement(o);
   }
@@ -39,7 +47,7 @@ public class DSFVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitPolygonHeader(@NotNull DSFPolygonHeader o) {
+  public void visitPolygonDefs(@NotNull DSFPolygonDefs o) {
     visitPsiElement(o);
   }
 
@@ -48,6 +56,10 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitPolygonWinding(@NotNull DSFPolygonWinding o) {
+    visitPsiElement(o);
+  }
+
+  public void visitProperties(@NotNull DSFProperties o) {
     visitPsiElement(o);
   }
 

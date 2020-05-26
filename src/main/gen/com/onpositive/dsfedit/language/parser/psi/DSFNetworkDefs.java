@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface DSFNetworkDefs extends PsiElement {
 
   @NotNull
-  List<DSFIgnored> getIgnoredList();
+  List<DSFNetworkDef> getNetworkDefList();
 
 }

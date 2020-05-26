@@ -14,6 +14,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*;
+
 public class DSFHighlighter extends SyntaxHighlighterBase {
 
     private static final TokenSet KEYWORDS = TokenSet.create(DSFTypes.A_KEYWORD, DSFTypes.I_KEYWORD, DSFTypes.PROPERTY_KEYWORD,
@@ -27,12 +29,17 @@ public class DSFHighlighter extends SyntaxHighlighterBase {
 
     private static final Map<IElementType, TextAttributesKey> ourMap1 = new HashMap<>();
 
-    static {
-        fillMap(ourMap1, KEYWORDS, DefaultLanguageHighlighterColors.KEYWORD);
-        fillMap(ourMap1, NUMBERS, DefaultLanguageHighlighterColors.NUMBER);
+    public static final TextAttributesKey DSF_KEYWORD = TextAttributesKey.createTextAttributesKey("DSF.KEYWORD", KEYWORD);
+    public static final TextAttributesKey DSF_NUMBER = TextAttributesKey.createTextAttributesKey("DSF.NUMBER", NUMBER);
+    public static final TextAttributesKey DSF_COMMENT = TextAttributesKey.createTextAttributesKey("DSF.COMMENT", LINE_COMMENT);
+    public static final TextAttributesKey DSF_VALUE_STRING = TextAttributesKey.createTextAttributesKey("DSF.VALUE_STRING", STRING);
 
-        ourMap1.put(DSFTypes.COMMENT, DefaultLanguageHighlighterColors.LINE_COMMENT);
-        ourMap1.put(DSFTypes.VALUE_STRING, DefaultLanguageHighlighterColors.STRING);
+    static {
+        fillMap(ourMap1, KEYWORDS, DSF_KEYWORD);
+        fillMap(ourMap1, NUMBERS, DSF_NUMBER);
+
+        ourMap1.put(DSFTypes.COMMENT, DSF_COMMENT);
+        ourMap1.put(DSFTypes.VALUE_STRING, DSF_VALUE_STRING);
     }
 
     @Override

@@ -127,15 +127,13 @@ public class DSFParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // object | polygon | segment | eol
-  public static boolean entity(PsiBuilder b, int l) {
+  static boolean entity(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "entity")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, ENTITY, "<entity>");
     r = object(b, l + 1);
     if (!r) r = polygon(b, l + 1);
     if (!r) r = segment(b, l + 1);
     if (!r) r = consumeToken(b, EOL);
-    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -147,6 +145,18 @@ public class DSFParser implements PsiParser, LightPsiParser {
     boolean r;
     r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, EOL);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // int_num
+  public static boolean int_ref(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "int_ref")) return false;
+    if (!nextTokenIs(b, INT_NUM)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, INT_NUM);
+    exit_section_(b, m, INT_REF, r);
     return r;
   }
 
@@ -164,13 +174,15 @@ public class DSFParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // (network_def | ignored )*
-  static boolean network_defs(PsiBuilder b, int l) {
+  public static boolean network_defs(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "network_defs")) return false;
+    Marker m = enter_section_(b, l, _NONE_, NETWORK_DEFS, "<network defs>");
     while (true) {
       int c = current_position_(b);
       if (!network_defs_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "network_defs", c)) break;
     }
+    exit_section_(b, l, m, true, false, null);
     return true;
   }
 
@@ -184,13 +196,14 @@ public class DSFParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'OBJECT'  int_num  coords  float_num eol
+  // 'OBJECT'  int_ref coords  float_num eol
   public static boolean object(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "object")) return false;
     if (!nextTokenIs(b, OBJECT_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, OBJECT_KEYWORD, INT_NUM);
+    r = consumeToken(b, OBJECT_KEYWORD);
+    r = r && int_ref(b, l + 1);
     r = r && coords(b, l + 1);
     r = r && consumeTokens(b, 0, FLOAT_NUM, EOL);
     exit_section_(b, m, OBJECT, r);
@@ -211,13 +224,15 @@ public class DSFParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // (object_def | ignored )*
-  static boolean object_defs(PsiBuilder b, int l) {
+  public static boolean object_defs(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "object_defs")) return false;
+    Marker m = enter_section_(b, l, _NONE_, OBJECT_DEFS, "<object defs>");
     while (true) {
       int c = current_position_(b);
       if (!object_defs_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "object_defs", c)) break;
     }
+    exit_section_(b, l, m, true, false, null);
     return true;
   }
 
@@ -231,39 +246,40 @@ public class DSFParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'BEGIN_POLYGON'  polygon_header eol (polygon_winding)+ 'END_POLYGON' eol
+  // 'BEGIN_POLYGON' int_ref polygon_header eol (polygon_winding)+ 'END_POLYGON' eol
   public static boolean polygon(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "polygon")) return false;
     if (!nextTokenIs(b, BEGIN_POLYGON_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, BEGIN_POLYGON_KEYWORD);
+    r = r && int_ref(b, l + 1);
     r = r && polygon_header(b, l + 1);
     r = r && consumeToken(b, EOL);
-    r = r && polygon_3(b, l + 1);
+    r = r && polygon_4(b, l + 1);
     r = r && consumeTokens(b, 0, END_POLYGON_KEYWORD, EOL);
     exit_section_(b, m, POLYGON, r);
     return r;
   }
 
   // (polygon_winding)+
-  private static boolean polygon_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "polygon_3")) return false;
+  private static boolean polygon_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "polygon_4")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = polygon_3_0(b, l + 1);
+    r = polygon_4_0(b, l + 1);
     while (r) {
       int c = current_position_(b);
-      if (!polygon_3_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "polygon_3", c)) break;
+      if (!polygon_4_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "polygon_4", c)) break;
     }
     exit_section_(b, m, null, r);
     return r;
   }
 
   // (polygon_winding)
-  private static boolean polygon_3_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "polygon_3_0")) return false;
+  private static boolean polygon_4_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "polygon_4_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = polygon_winding(b, l + 1);
@@ -285,13 +301,15 @@ public class DSFParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // (polygon_def | ignored )*
-  static boolean polygon_defs(PsiBuilder b, int l) {
+  public static boolean polygon_defs(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "polygon_defs")) return false;
+    Marker m = enter_section_(b, l, _NONE_, POLYGON_DEFS, "<polygon defs>");
     while (true) {
       int c = current_position_(b);
       if (!polygon_defs_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "polygon_defs", c)) break;
     }
+    exit_section_(b, l, m, true, false, null);
     return true;
   }
 
@@ -305,14 +323,14 @@ public class DSFParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // int_num  int_num  int_num
-  public static boolean polygon_header(PsiBuilder b, int l) {
+  // int_num  int_num
+  static boolean polygon_header(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "polygon_header")) return false;
     if (!nextTokenIs(b, INT_NUM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, INT_NUM, INT_NUM, INT_NUM);
-    exit_section_(b, m, POLYGON_HEADER, r);
+    r = consumeTokens(b, 0, INT_NUM, INT_NUM);
+    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -361,13 +379,15 @@ public class DSFParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // (property | ignored) *
-  static boolean properties(PsiBuilder b, int l) {
+  public static boolean properties(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "properties")) return false;
+    Marker m = enter_section_(b, l, _NONE_, PROPERTIES, "<properties>");
     while (true) {
       int c = current_position_(b);
       if (!properties_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "properties", c)) break;
     }
+    exit_section_(b, l, m, true, false, null);
     return true;
   }
 

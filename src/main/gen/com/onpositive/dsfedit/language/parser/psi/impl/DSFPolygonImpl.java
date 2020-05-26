@@ -28,8 +28,8 @@ public class DSFPolygonImpl extends ASTWrapperPsiElement implements DSFPolygon {
 
   @Override
   @NotNull
-  public DSFPolygonHeader getPolygonHeader() {
-    return findNotNullChildByClass(DSFPolygonHeader.class);
+  public DSFIntRef getIntRef() {
+    return findNotNullChildByClass(DSFIntRef.class);
   }
 
   @Override

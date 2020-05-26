@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface DSFPolygon extends PsiElement {
 
   @NotNull
-  DSFPolygonHeader getPolygonHeader();
+  DSFIntRef getIntRef();
 
   @NotNull
   List<DSFPolygonWinding> getPolygonWindingList();

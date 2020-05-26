@@ -12,7 +12,7 @@
   elementTypeClass="com.onpositive.dsfedit.language.psi.DSFElementType"
   tokenTypeClass="com.onpositive.dsfedit.language.psi.DSFTokenType"
 
-  psiImplUtilClass="com.onpositive.dsfedit.language.parser.psi.impl.DSFPsiImplUtil"
+  psiImplUtilClass="com.onpositive.dsfedit.language.psi.impl.DSFPsiUtil"
   tokens = [
     OBJECT_DEF_KEYWORD='OBJECT_DEF'
     POLYGON_DEF_KEYWORD='POLYGON_DEF'
@@ -44,23 +44,25 @@ dsfHeader ::= ('I'|'A') eol int_num eol id eol
 
 private declarations ::= properties object_defs polygon_defs network_defs
 
-private properties ::= (property | ignored) *
+properties ::= (property | ignored) *
 property ::= 'PROPERTY' space? prop_id value_string
 
-private object_defs ::= (object_def | ignored )*
+object_defs ::= (object_def | ignored )*
 object_def ::= 'OBJECT_DEF'  value_string
-private polygon_defs ::= (polygon_def | ignored )*
+polygon_defs ::= (polygon_def | ignored )*
 polygon_def ::= 'POLYGON_DEF'  value_string
-private network_defs ::= (network_def | ignored )*
+network_defs ::= (network_def | ignored )*
 network_def ::= 'NETWORK_DEF'  value_string
 
 private entities ::= entity*
-entity ::= object | polygon | segment | eol
+private entity ::= object | polygon | segment | eol
 
-object ::= 'OBJECT'  int_num  coords  float_num eol
+int_ref ::= int_num
 
-polygon ::= 'BEGIN_POLYGON'  polygon_header eol (polygon_winding)+ 'END_POLYGON' eol
-polygon_header ::= int_num  int_num  int_num
+object ::= 'OBJECT'  int_ref coords  float_num eol
+
+polygon ::= 'BEGIN_POLYGON' int_ref polygon_header eol (polygon_winding)+ 'END_POLYGON' eol
+private polygon_header ::= int_num  int_num
 polygon_winding ::= 'BEGIN_WINDING' eol polygon_point+ 'END_WINDING' eol
 polygon_point ::= 'POLYGON_POINT'  coords eol
 private coords ::= float_num  float_num
