@@ -34,6 +34,8 @@
     space='regexp:[ \t]+'
   ]
 
+    implements("polygon|object")="com.onpositive.dsfedit.language.psi.DSFNamedElement"
+    extends("polygon|object")="com.onpositive.dsfedit.language.psi.impl.DSFNamedElementImpl"
 }
 
 dsfFile ::= dsfHeader declarations entities
@@ -59,9 +61,9 @@ private entity ::= object | polygon | segment | eol
 
 int_ref ::= int_num
 
-object ::= 'OBJECT'  int_ref coords  float_num eol
+object ::= 'OBJECT'  int_ref coords  float_num eol { methods=[getName setName getNameIdentifier getReferences] }
 
-polygon ::= 'BEGIN_POLYGON' int_ref polygon_header eol (polygon_winding)+ 'END_POLYGON' eol
+polygon ::= 'BEGIN_POLYGON' int_ref polygon_header eol (polygon_winding)+ 'END_POLYGON' eol { methods=[getName setName getNameIdentifier getReferences] }
 private polygon_header ::= int_num  int_num
 polygon_winding ::= 'BEGIN_WINDING' eol polygon_point+ 'END_WINDING' eol
 polygon_point ::= 'POLYGON_POINT'  coords eol

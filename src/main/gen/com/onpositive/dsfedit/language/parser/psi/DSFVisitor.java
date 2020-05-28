@@ -4,6 +4,7 @@ package com.onpositive.dsfedit.language.parser.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import com.onpositive.dsfedit.language.psi.DSFNamedElement;
 
 public class DSFVisitor extends PsiElementVisitor {
 
@@ -28,7 +29,7 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitObject(@NotNull DSFObject o) {
-    visitPsiElement(o);
+    visitNamedElement(o);
   }
 
   public void visitObjectDef(@NotNull DSFObjectDef o) {
@@ -40,7 +41,7 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitPolygon(@NotNull DSFPolygon o) {
-    visitPsiElement(o);
+    visitNamedElement(o);
   }
 
   public void visitPolygonDef(@NotNull DSFPolygonDef o) {
@@ -80,6 +81,10 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitSimplePoint(@NotNull DSFSimplePoint o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNamedElement(@NotNull DSFNamedElement o) {
     visitPsiElement(o);
   }
 

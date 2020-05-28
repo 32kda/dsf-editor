@@ -22,6 +22,11 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
+    def path = System.getenv('alternativeIdePath')
+    if (path != null) {
+        alternativeIdePath = path;
+        System.out.println('Debugging against the local installation:' + path)
+    }
     version '2020.1'
     intellij.plugins = ['java', 'PsiViewer:201-SNAPSHOT']
 }

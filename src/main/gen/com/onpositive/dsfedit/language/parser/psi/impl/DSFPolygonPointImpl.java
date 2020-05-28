@@ -10,6 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.onpositive.dsfedit.language.parser.psi.*;
+import com.onpositive.dsfedit.language.psi.impl.DSFPsiUtil;
 
 public class DSFPolygonPointImpl extends ASTWrapperPsiElement implements DSFPolygonPoint {
 

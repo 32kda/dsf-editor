@@ -8,10 +8,12 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.onpositive.dsfedit.language.parser.psi.DSFTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import com.onpositive.dsfedit.language.psi.impl.DSFNamedElementImpl;
 import com.onpositive.dsfedit.language.parser.psi.*;
+import com.onpositive.dsfedit.language.psi.impl.DSFPsiUtil;
+import com.intellij.psi.PsiReference;
 
-public class DSFObjectImpl extends ASTWrapperPsiElement implements DSFObject {
+public class DSFObjectImpl extends DSFNamedElementImpl implements DSFObject {
 
   public DSFObjectImpl(@NotNull ASTNode node) {
     super(node);
@@ -30,6 +32,26 @@ public class DSFObjectImpl extends ASTWrapperPsiElement implements DSFObject {
   @NotNull
   public DSFIntRef getIntRef() {
     return findNotNullChildByClass(DSFIntRef.class);
+  }
+
+  @Override
+  public String getName() {
+    return DSFPsiUtil.getName(this);
+  }
+
+  @Override
+  public PsiElement setName(String newName) {
+    return DSFPsiUtil.setName(this, newName);
+  }
+
+  @Override
+  public PsiElement getNameIdentifier() {
+    return DSFPsiUtil.getNameIdentifier(this);
+  }
+
+  @Override
+  public PsiReference[] getReferences() {
+    return DSFPsiUtil.getReferences(this);
   }
 
 }
