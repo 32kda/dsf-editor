@@ -33,6 +33,8 @@ Another thing I wanted to achive is showing some tooltips for current line of co
 After some googling and searching existing projects for examples, I've found that I need to use the `editor.linePainter` extension point for this.
 More information could be found in [this thread](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360002834320-How-to-achieve-inline-values-similar-to-debugger-).
 
+See an example in _DSFEditorLinePainter_ class
+
   
  
 

@@ -29,6 +29,7 @@
                                    implementationClass="com.onpositive.dsfedit.language.highlight.DSFHighlighterFactory"/>
     <colorSettingsPage implementation="com.onpositive.dsfedit.language.highlight.DSFColorSettingsPage"/>
     <psi.referenceContributor implementation="com.onpositive.dsfedit.language.DSFReferenceContributor"/>
+    <editor.linePainter implementation="com.onpositive.dsfedit.language.DSFEditorLinePainter"/>
   </extensions>
 
   <actions>
