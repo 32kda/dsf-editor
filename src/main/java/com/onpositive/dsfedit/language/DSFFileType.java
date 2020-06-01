@@ -2,13 +2,14 @@ package com.onpositive.dsfedit.language;
 
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.LanguageFileType;
+import com.intellij.openapi.fileTypes.PlainTextLikeFileType;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-public class DSFFileType extends LanguageFileType {
+public class DSFFileType extends LanguageFileType implements PlainTextLikeFileType {
 
     public static final DSFFileType INSTANCE = new DSFFileType();
 

@@ -23,14 +23,15 @@
 
   <extensions defaultExtensionNs="com.intellij">
       <fileType name="DSF Source" implementationClass="com.onpositive.dsfedit.language.DSFFileType"
-                fieldName="INSTANCE" language="DSF" extensions="txt"/>
+                fieldName="INSTANCE" language="DSF"/>
     <lang.parserDefinition language="DSF" implementationClass="com.onpositive.dsfedit.language.DSFParserDefinition"/>
     <lang.syntaxHighlighterFactory language="DSF"
                                    implementationClass="com.onpositive.dsfedit.language.highlight.DSFHighlighterFactory"/>
     <colorSettingsPage implementation="com.onpositive.dsfedit.language.highlight.DSFColorSettingsPage"/>
     <psi.referenceContributor implementation="com.onpositive.dsfedit.language.DSFReferenceContributor"/>
     <editor.linePainter implementation="com.onpositive.dsfedit.language.DSFEditorLinePainter"/>
-    <fileTypeDetector implementation="com.onpositive.dsfedit.language.DSFFileTypeDetector"/>
+    <fileTypeDetector implementation="com.onpositive.dsfedit.language.DSFFileTypeDetector"  order="first"/>
+    <fileTypeOverrider implementation="com.onpositive.dsfedit.language.DSFFileTypeOverrider" order="first"/>
   </extensions>
 
   <actions>
