@@ -23,7 +23,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
       <fileType name="DSF Source" implementationClass="com.onpositive.dsfedit.language.DSFFileType"
-                fieldName="INSTANCE" language="DSF"/>
+                fieldName="INSTANCE" language="DSF" />
     <lang.parserDefinition language="DSF" implementationClass="com.onpositive.dsfedit.language.DSFParserDefinition"/>
     <lang.syntaxHighlighterFactory language="DSF"
                                    implementationClass="com.onpositive.dsfedit.language.highlight.DSFHighlighterFactory"/>
@@ -32,6 +32,7 @@
     <editor.linePainter implementation="com.onpositive.dsfedit.language.DSFEditorLinePainter"/>
     <fileTypeDetector implementation="com.onpositive.dsfedit.language.DSFFileTypeDetector"  order="first"/>
     <fileTypeOverrider implementation="com.onpositive.dsfedit.language.DSFFileTypeOverrider" order="first"/>
+    <lang.foldingBuilder language="DSF" implementationClass="com.onpositive.dsfedit.language.DSFFoldingBuilder"/>
   </extensions>
 
   <actions>

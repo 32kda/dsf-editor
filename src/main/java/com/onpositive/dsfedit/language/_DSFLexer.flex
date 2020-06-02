@@ -31,7 +31,7 @@ INT_NUM=[0-9]+
 FLOAT_NUM=[0-9]+(\.[0-9]*)?
 ID=[:letter:][a-zA-Z_0-9]*
 PROP_ID=[:letter:][a-zA-Z_0-9]*\/[:letter:][a-zA-Z_0-9]*
-VALUE_STRING=[^ \t\n\x0B\f\r].*\R
+VALUE_STRING=[^ \t\n\x0B\f\r].*
 
 %state WAITING_VALUE
 %state WAITING_PROP
