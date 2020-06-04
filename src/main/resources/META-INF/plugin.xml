@@ -33,6 +33,7 @@
     <fileTypeDetector implementation="com.onpositive.dsfedit.language.DSFFileTypeDetector"  order="first"/>
     <fileTypeOverrider implementation="com.onpositive.dsfedit.language.DSFFileTypeOverrider" order="first"/>
     <lang.foldingBuilder language="DSF" implementationClass="com.onpositive.dsfedit.language.DSFFoldingBuilder"/>
+    <lang.psiStructureViewFactory language="DSF" implementationClass="com.onpositive.dsfedit.language.structure.DSFStructureViewFactory"/>;
   </extensions>
 
   <actions>
