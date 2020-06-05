@@ -29,9 +29,9 @@ public class DSFPolygonImpl extends DSFNamedElementImpl implements DSFPolygon {
   }
 
   @Override
-  @NotNull
+  @Nullable
   public DSFIntRef getIntRef() {
-    return findNotNullChildByClass(DSFIntRef.class);
+    return findChildByClass(DSFIntRef.class);
   }
 
   @Override

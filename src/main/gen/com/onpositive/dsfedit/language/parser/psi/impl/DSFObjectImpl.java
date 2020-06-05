@@ -29,9 +29,9 @@ public class DSFObjectImpl extends DSFNamedElementImpl implements DSFObject {
   }
 
   @Override
-  @NotNull
+  @Nullable
   public DSFIntRef getIntRef() {
-    return findNotNullChildByClass(DSFIntRef.class);
+    return findChildByClass(DSFIntRef.class);
   }
 
   @Override

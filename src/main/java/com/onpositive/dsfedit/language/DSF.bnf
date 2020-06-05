@@ -58,20 +58,22 @@ network_def ::= 'NETWORK_DEF'  value_string
 
 private eol_recover ::= !eol
 
-private entities ::= entity*
-private entity ::= object | polygon | segment | eol
+private entities ::= (entity? eol)*
+private entity ::= object | polygon | segment  {recoverWhile=entity_recover}
+private entity_recover ::= !eol
 
 int_ref ::= int_num
 
-object ::= 'OBJECT'  int_ref coords  float_num eol { methods=[getName setName getNameIdentifier getReferences] }
+object ::= 'OBJECT'  int_ref coords  float_num {pin=1 methods=[getName setName getNameIdentifier getReferences] }
 
-polygon ::= 'BEGIN_POLYGON' int_ref polygon_header eol (polygon_winding)+ 'END_POLYGON' eol { methods=[getName setName getNameIdentifier getReferences] }
+polygon ::= 'BEGIN_POLYGON' int_ref polygon_header eol (polygon_winding)+ 'END_POLYGON' {pin=1 methods=[getName setName getNameIdentifier getReferences] }
 private polygon_header ::= int_num  int_num
-polygon_winding ::= 'BEGIN_WINDING' eol polygon_point+ 'END_WINDING' eol
-polygon_point ::= 'POLYGON_POINT'  coords eol
+polygon_winding ::= 'BEGIN_WINDING' eol (polygon_point eol)+ 'END_WINDING' eol
+polygon_point ::= 'POLYGON_POINT'  coords {pin=1 recoverWhile=polygon_recover}
 private coords ::= float_num  float_num
+private polygon_recover ::= ! eol
 
-segment ::= 'BEGIN_SEGMENT'  segment_header  segment_coords eol segment_point* 'END_SEGMENT'  int_num  segment_coords eol
+segment ::= 'BEGIN_SEGMENT'  segment_header  segment_coords eol segment_point* 'END_SEGMENT'  int_num  segment_coords {pin=1}
 segment_header ::= int_num  int_num  int_num
 private segment_coords ::= coords  float_num
 segment_point ::= simple_point | curved_point

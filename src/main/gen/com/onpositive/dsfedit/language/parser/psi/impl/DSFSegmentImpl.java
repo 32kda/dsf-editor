@@ -28,9 +28,9 @@ public class DSFSegmentImpl extends ASTWrapperPsiElement implements DSFSegment {
   }
 
   @Override
-  @NotNull
+  @Nullable
   public DSFSegmentHeader getSegmentHeader() {
-    return findNotNullChildByClass(DSFSegmentHeader.class);
+    return findChildByClass(DSFSegmentHeader.class);
   }
 
   @Override

@@ -9,7 +9,7 @@ import com.intellij.psi.PsiReference;
 
 public interface DSFPolygon extends DSFNamedElement {
 
-  @NotNull
+  @Nullable
   DSFIntRef getIntRef();
 
   @NotNull

@@ -9,7 +9,7 @@ import com.intellij.psi.PsiReference;
 
 public interface DSFObject extends DSFNamedElement {
 
-  @NotNull
+  @Nullable
   DSFIntRef getIntRef();
 
   String getName();
