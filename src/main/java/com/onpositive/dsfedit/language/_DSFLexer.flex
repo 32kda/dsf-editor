@@ -52,7 +52,7 @@ VALUE_STRING=[^ \t\n\x0B\f\r].*
   "END_WINDING"          { yybegin(YYINITIAL); return END_WINDING_KEYWORD; }  
   "POLYGON_POINT"        { yybegin(YYINITIAL); return POLYGON_POINT_KEYWORD; }
   "BEGIN_SEGMENT"        { yybegin(YYINITIAL); return BEGIN_SEGMENT_KEYWORD; }
-  "END_SEGMENT"          { yybegin(YYINITIAL); return END_SEGMEN_KEYWORD; }   
+  "END_SEGMENT"          { yybegin(YYINITIAL); return END_SEGMENT_KEYWORD; }
   "SHAPE_POINT"          { yybegin(YYINITIAL); return SHAPE_POINT_KEYWORD; }  
   "SHAPE_POINT_CURVED"   { yybegin(YYINITIAL); return SHAPE_POINT_CURVED_KEYWORD; }
   "I"                    { yybegin(YYINITIAL); return I_KEYWORD; }

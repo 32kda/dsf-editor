@@ -550,7 +550,7 @@ public class DSFParser implements PsiParser, LightPsiParser {
     r = p && report_error_(b, segment_coords(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, EOL)) && r;
     r = p && report_error_(b, segment_4(b, l + 1)) && r;
-    r = p && report_error_(b, consumeTokens(b, -1, END_SEGMEN_KEYWORD, INT_NUM)) && r;
+    r = p && report_error_(b, consumeTokens(b, -1, END_SEGMENT_KEYWORD, INT_NUM)) && r;
     r = p && segment_coords(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;

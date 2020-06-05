@@ -36,7 +36,7 @@ public interface DSFTypes {
   IElementType BEGIN_WINDING_KEYWORD = new DSFTokenType("BEGIN_WINDING");
   IElementType COMMENT = new DSFTokenType("comment");
   IElementType END_POLYGON_KEYWORD = new DSFTokenType("END_POLYGON");
-  IElementType END_SEGMEN_KEYWORD = new DSFTokenType("END_SEGMENT");
+  IElementType END_SEGMENT_KEYWORD = new DSFTokenType("END_SEGMENT");
   IElementType END_WINDING_KEYWORD = new DSFTokenType("END_WINDING");
   IElementType EOL = new DSFTokenType("eol");
   IElementType FLOAT_NUM = new DSFTokenType("float_num");

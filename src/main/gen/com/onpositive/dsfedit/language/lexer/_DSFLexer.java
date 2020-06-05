@@ -791,7 +791,7 @@ public class _DSFLexer implements FlexLexer {
             // fall through
           case 44: break;
           case 19: 
-            { yybegin(YYINITIAL); return END_SEGMEN_KEYWORD;
+            { yybegin(YYINITIAL); return END_SEGMENT_KEYWORD;
             } 
             // fall through
           case 45: break;
