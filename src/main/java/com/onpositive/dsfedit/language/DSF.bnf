@@ -52,9 +52,9 @@ property ::= 'PROPERTY' space? prop_id value_string
 object_defs ::= (object_def eol| ignored )*
 object_def ::= 'OBJECT_DEF'  value_string {pin=1 recoverWhile=eol_recover}
 polygon_defs ::= (polygon_def eol| ignored )*
-polygon_def ::= 'POLYGON_DEF'  value_string 
+polygon_def ::= 'POLYGON_DEF'  value_string {pin=1 recoverWhile=eol_recover}
 network_defs ::= (network_def eol| ignored )*
-network_def ::= 'NETWORK_DEF'  value_string
+network_def ::= 'NETWORK_DEF'  value_string {pin=1 recoverWhile=eol_recover}
 
 private eol_recover ::= !eol
 

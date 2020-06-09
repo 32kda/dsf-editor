@@ -1,0 +1,18 @@
+<templateSet group="DSF">
+    <template name="pol" value="BEGIN_POLYGON $value$ 255 2&#10;BEGIN_WINDING&#10;&#10;END_WINDING&#10;END_POLYGON&#10;" description="Polygon"
+              toReformat="false" toShortenFQNames="false">
+        <variable name="value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="DSF" value="true"/>
+            <option name="OTHER" value="false"/>
+        </context>
+    </template>
+    <template name="seg" value="BEGIN_SEGMENT 0 $value$ &#10;&#10;END_SEGMENT&#10;" description="Network segment (roads, railways...)"
+              toReformat="false" toShortenFQNames="false">
+        <variable name="value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="DSF" value="true"/>
+            <option name="OTHER" value="false"/>
+        </context>
+    </template>
+</templateSet>
