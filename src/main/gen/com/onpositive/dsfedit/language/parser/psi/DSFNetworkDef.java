@@ -4,7 +4,8 @@ package com.onpositive.dsfedit.language.parser.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import com.onpositive.dsfedit.language.psi.IDSFDefinition;
 
-public interface DSFNetworkDef extends PsiElement {
+public interface DSFNetworkDef extends IDSFDefinition {
 
 }

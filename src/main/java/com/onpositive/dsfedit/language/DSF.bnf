@@ -35,6 +35,7 @@
   ]
 
     implements("polygon|object")="com.onpositive.dsfedit.language.psi.DSFNamedElement"
+    implements(".*_def")="com.onpositive.dsfedit.language.psi.IDSFDefinition"
     extends("polygon|object")="com.onpositive.dsfedit.language.psi.impl.DSFNamedElementImpl"
 }
 

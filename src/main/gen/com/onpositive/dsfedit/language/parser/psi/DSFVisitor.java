@@ -4,6 +4,7 @@ package com.onpositive.dsfedit.language.parser.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import com.onpositive.dsfedit.language.psi.IDSFDefinition;
 import com.onpositive.dsfedit.language.psi.DSFNamedElement;
 
 public class DSFVisitor extends PsiElementVisitor {
@@ -21,7 +22,7 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitNetworkDef(@NotNull DSFNetworkDef o) {
-    visitPsiElement(o);
+    visitIDSFDefinition(o);
   }
 
   public void visitNetworkDefs(@NotNull DSFNetworkDefs o) {
@@ -33,7 +34,7 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitObjectDef(@NotNull DSFObjectDef o) {
-    visitPsiElement(o);
+    visitIDSFDefinition(o);
   }
 
   public void visitObjectDefs(@NotNull DSFObjectDefs o) {
@@ -45,7 +46,7 @@ public class DSFVisitor extends PsiElementVisitor {
   }
 
   public void visitPolygonDef(@NotNull DSFPolygonDef o) {
-    visitPsiElement(o);
+    visitIDSFDefinition(o);
   }
 
   public void visitPolygonDefs(@NotNull DSFPolygonDefs o) {
@@ -86,6 +87,10 @@ public class DSFVisitor extends PsiElementVisitor {
 
   public void visitNamedElement(@NotNull DSFNamedElement o) {
     visitPsiElement(o);
+  }
+
+  public void visitIDSFDefinition(@NotNull IDSFDefinition o) {
+    visitElement(o);
   }
 
   public void visitPsiElement(@NotNull PsiElement o) {

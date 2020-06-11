@@ -205,12 +205,12 @@ public class DSFParser implements PsiParser, LightPsiParser {
   // 'NETWORK_DEF'  value_string
   public static boolean network_def(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "network_def")) return false;
-    if (!nextTokenIs(b, NETWORK_DEF_KEYWORD)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, NETWORK_DEF_KEYWORD, VALUE_STRING);
-    exit_section_(b, m, NETWORK_DEF, r);
-    return r;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, NETWORK_DEF, "<network def>");
+    r = consumeTokens(b, 1, NETWORK_DEF_KEYWORD, VALUE_STRING);
+    p = r; // pin = 1
+    exit_section_(b, l, m, r, p, eol_recover_parser_);
+    return r || p;
   }
 
   /* ********************************************************** */
@@ -360,12 +360,12 @@ public class DSFParser implements PsiParser, LightPsiParser {
   // 'POLYGON_DEF'  value_string
   public static boolean polygon_def(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "polygon_def")) return false;
-    if (!nextTokenIs(b, POLYGON_DEF_KEYWORD)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, POLYGON_DEF_KEYWORD, VALUE_STRING);
-    exit_section_(b, m, POLYGON_DEF, r);
-    return r;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, POLYGON_DEF, "<polygon def>");
+    r = consumeTokens(b, 1, POLYGON_DEF_KEYWORD, VALUE_STRING);
+    p = r; // pin = 1
+    exit_section_(b, l, m, r, p, eol_recover_parser_);
+    return r || p;
   }
 
   /* ********************************************************** */

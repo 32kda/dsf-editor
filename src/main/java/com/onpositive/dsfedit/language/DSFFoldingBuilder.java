@@ -26,11 +26,12 @@ public class DSFFoldingBuilder extends FoldingBuilderEx {
 
         int i = 0;
         for (PsiElement element: nodes) {
-            resList.add(new FoldingDescriptor(element.getNode(),
-                    new TextRange(element.getTextRange().getStartOffset(),
-                            element.getTextRange().getEndOffset() - 1),
-                    FoldingGroup.newGroup(element.toString() + " " + i++)) );
-
+            if (element.getText().trim().length() > 0) {
+                resList.add(new FoldingDescriptor(element.getNode(),
+                        new TextRange(element.getTextRange().getStartOffset(),
+                                element.getTextRange().getEndOffset() - 1),
+                        FoldingGroup.newGroup(element.toString() + " " + i++)));
+            }
         }
         return resList.toArray(new FoldingDescriptor[0]);
     }
