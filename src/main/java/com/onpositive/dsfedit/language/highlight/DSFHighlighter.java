@@ -1,14 +1,12 @@
 package com.onpositive.dsfedit.language.highlight;
 
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 import com.onpositive.dsfedit.language.DSFLexerAdapter;
 import com.onpositive.dsfedit.language.parser.psi.DSFTypes;
-import com.thaiopensource.xml.dtd.om.Def;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -33,10 +31,12 @@ public class DSFHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey DSF_NUMBER = TextAttributesKey.createTextAttributesKey("DSF.NUMBER", NUMBER);
     public static final TextAttributesKey DSF_COMMENT = TextAttributesKey.createTextAttributesKey("DSF.COMMENT", LINE_COMMENT);
     public static final TextAttributesKey DSF_VALUE_STRING = TextAttributesKey.createTextAttributesKey("DSF.VALUE_STRING", STRING);
+    public static final TextAttributesKey DSF_ID = TextAttributesKey.createTextAttributesKey("DSF.ID", IDENTIFIER);
 
     static {
         fillMap(ourMap1, KEYWORDS, DSF_KEYWORD);
         fillMap(ourMap1, NUMBERS, DSF_NUMBER);
+        fillMap(ourMap1, IDS, DSF_ID);
 
         ourMap1.put(DSFTypes.COMMENT, DSF_COMMENT);
         ourMap1.put(DSFTypes.VALUE_STRING, DSF_VALUE_STRING);
