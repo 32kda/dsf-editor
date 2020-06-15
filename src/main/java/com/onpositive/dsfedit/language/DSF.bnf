@@ -48,7 +48,7 @@ dsfHeader ::= ('I'|'A') eol int_num eol id eol
 private declarations ::= properties object_defs polygon_defs network_defs
 
 properties ::= (property eol| ignored) *
-property ::= 'PROPERTY' space? prop_id value_string 
+property ::= 'PROPERTY' space? prop_id value_string {pin=1 recoverWhile=eol_recover}
 
 object_defs ::= (object_def eol| ignored )*
 object_def ::= 'OBJECT_DEF'  value_string {pin=1 recoverWhile=eol_recover}

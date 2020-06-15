@@ -45,6 +45,7 @@
     <lang.braceMatcher language="DSF" implementationClass="com.onpositive.dsfedit.language.highlight.DSFBraceMatcher"/>
     <liveTemplateContext implementation="com.onpositive.dsfedit.language.completion.DSFTemplateContext"/>
     <completion.contributor language="DSF" implementationClass="com.onpositive.dsfedit.language.completion.DSFCompletionContributor"/>
+    <completion.contributor language="DSF" implementationClass="com.onpositive.dsfedit.language.completion.DSFPropCompletionContributor"/>
     <defaultLiveTemplates file="liveTemplates/dsf.xml" />
   </extensions>
 

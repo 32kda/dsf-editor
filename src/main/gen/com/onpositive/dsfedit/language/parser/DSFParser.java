@@ -520,14 +520,14 @@ public class DSFParser implements PsiParser, LightPsiParser {
   // 'PROPERTY' space? prop_id value_string
   public static boolean property(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property")) return false;
-    if (!nextTokenIs(b, PROPERTY_KEYWORD)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, PROPERTY, "<property>");
     r = consumeToken(b, PROPERTY_KEYWORD);
-    r = r && property_1(b, l + 1);
-    r = r && consumeTokens(b, 0, PROP_ID, VALUE_STRING);
-    exit_section_(b, m, PROPERTY, r);
-    return r;
+    p = r; // pin = 1
+    r = r && report_error_(b, property_1(b, l + 1));
+    r = p && report_error_(b, consumeTokens(b, -1, PROP_ID, VALUE_STRING)) && r;
+    exit_section_(b, l, m, r, p, eol_recover_parser_);
+    return r || p;
   }
 
   // space?
