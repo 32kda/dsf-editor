@@ -48,6 +48,7 @@
     <completion.contributor language="DSF" implementationClass="com.onpositive.dsfedit.language.completion.DSFPropCompletionContributor"/>
     <defaultLiveTemplates file="liveTemplates/dsf.xml" />
     <annotator implementationClass="com.onpositive.dsfedit.language.highlight.DSFAnnotator" language="DSF"/>
+    <runLineMarkerContributor implementationClass="com.onpositive.dsfedit.language.actions.DSFRunLineMarkerContributor" language="DSF"/>
   </extensions>
 
   <actions>
