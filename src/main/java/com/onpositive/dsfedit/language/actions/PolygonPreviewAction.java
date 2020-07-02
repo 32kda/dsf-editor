@@ -50,7 +50,7 @@ public class PolygonPreviewAction extends AnAction {
     protected void showPopup(DataContext context, Balloon popup, JComponent contextComponent) {
         Component focusedComponent = contextComponent != null ? contextComponent : (Component) PlatformDataKeys.CONTEXT_COMPONENT.getData(context);
         if (focusedComponent != null) {
-           popup.show(RelativePoint.getNorthEastOf(contextComponent), Balloon.Position.above);
+           popup.show(RelativePoint.getCenterOf((JComponent)focusedComponent), Balloon.Position.above);
         } else {
             focusedComponent = WindowManagerEx.getInstanceEx().getFocusedComponent((Project)null);
             Rectangle r = WindowManagerEx.getInstanceEx().getScreenBounds();
