@@ -62,7 +62,7 @@ public class DSFRunLineMarkerContributor extends RunLineMarkerContributor {
         double multiplier = Math.min(size / Math.abs(maxY - minY), size / (Math.abs(maxX - minX) * factor));
 
         return points.stream()
-                .map(pt -> new Point2D.Double((pt.getX() - minX) * factor * multiplier, (pt.getY() - minY) * multiplier))
+                .map(pt -> new Point2D.Double((pt.getX() - minX) * factor * multiplier, (maxY - pt.getY()) * multiplier))
                 .collect(Collectors.toList());
     }
 
