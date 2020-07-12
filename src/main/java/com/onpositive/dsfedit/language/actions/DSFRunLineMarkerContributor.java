@@ -2,19 +2,21 @@ package com.onpositive.dsfedit.language.actions;
 
 import com.intellij.execution.lineMarker.RunLineMarkerContributor;
 import com.intellij.lang.ASTNode;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
+import com.onpositive.dsfedit.facades.FacadesHelper;
+import com.onpositive.dsfedit.language.parser.psi.DSFPolygonDef;
 import com.onpositive.dsfedit.language.parser.psi.DSFPolygonPoint;
 import com.onpositive.dsfedit.language.parser.psi.DSFPolygonWinding;
 import com.onpositive.dsfedit.language.parser.psi.DSFTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,6 +47,20 @@ public class DSFRunLineMarkerContributor extends RunLineMarkerContributor {
             }
             points = reScale(points);
             return new Info(IconLoader.getIcon("/icons/preview-16.png"), null, new PolygonPreviewAction(points));
+        } else if (element.getNode().getElementType() == DSFTypes.POLYGON_DEF_KEYWORD) {
+            DSFPolygonDef polygonDef = (DSFPolygonDef) element.getParent();
+            String text = polygonDef.getText().trim();
+            int idx = text.indexOf(' ');
+            if (idx > 0) {
+                String filePath = text.substring(idx).trim();
+                File facadeFile = new File(filePath);
+                if (facadeFile.exists()) {
+                    Image previewImage = FacadesHelper.getPreviewImage(facadeFile);
+                    if (previewImage != null) {
+                        return new Info(IconLoader.getIcon("/icons/preview-16.png"), null, new FacadePreviewAction(previewImage));
+                    }
+                }
+            }
         }
         return null;
     }

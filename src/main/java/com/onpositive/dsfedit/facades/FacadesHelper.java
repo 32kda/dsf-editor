@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FacadesHelper {
+
 	public static Image getPreviewImage(File facadeFile) {
 //		Image img = imageRegistry.get(facadeFile.getAbsolutePath());
 //		if (img != null) {
