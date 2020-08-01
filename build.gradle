@@ -22,15 +22,18 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
+    updateSinceUntilBuild false
     def path = System.getenv('alternativeIdePath')
     if (path != null) {
-        alternativeIdePath = path;
+        alternativeIdePath = path
         System.out.println('Debugging against the local installation:' + path)
     }
-    version '2020.1'
-    intellij.plugins = ['java', 'PsiViewer:201-SNAPSHOT']
+    version '2020.2'
+    intellij.plugins = ['java', 'PsiViewer:202-SNAPSHOT']
 }
 patchPluginXml {
+    sinceBuild '201'
+    untilBuild '202.*'
     changeNotes """
       Add change notes here.<br>
       <em>most HTML tags may be used</em>"""

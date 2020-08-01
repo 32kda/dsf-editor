@@ -6,10 +6,11 @@ import com.intellij.openapi.util.IconLoader;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
 import com.onpositive.dsfedit.facades.FacadesHelper;
-import com.onpositive.dsfedit.language.parser.psi.DSFPolygonDef;
 import com.onpositive.dsfedit.language.parser.psi.DSFPolygonPoint;
 import com.onpositive.dsfedit.language.parser.psi.DSFPolygonWinding;
 import com.onpositive.dsfedit.language.parser.psi.DSFTypes;
+import com.onpositive.dsfedit.language.psi.IDSFDefinition;
+import com.onpositive.dsfedit.util.FilePathUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,7 +31,7 @@ public class DSFRunLineMarkerContributor extends RunLineMarkerContributor {
         if (element.getNode().getElementType() == DSFTypes.BEGIN_WINDING_KEYWORD) {
             List<DSFPolygonPoint> polygonPointList = ((DSFPolygonWinding) element.getParent()).getPolygonPointList();
             List<Point2D> points = new ArrayList<>();
-            for (DSFPolygonPoint point: polygonPointList) {
+            for (DSFPolygonPoint point : polygonPointList) {
                 @NotNull ASTNode[] astNodes = point.getNode().getChildren(TokenSet.create(DSFTypes.FLOAT_NUM));
                 if (astNodes.length == 2) {
                     try {
@@ -48,17 +49,11 @@ public class DSFRunLineMarkerContributor extends RunLineMarkerContributor {
             points = reScale(points);
             return new Info(IconLoader.getIcon("/icons/preview-16.png"), null, new PolygonPreviewAction(points));
         } else if (element.getNode().getElementType() == DSFTypes.POLYGON_DEF_KEYWORD) {
-            DSFPolygonDef polygonDef = (DSFPolygonDef) element.getParent();
-            String text = polygonDef.getText().trim();
-            int idx = text.indexOf(' ');
-            if (idx > 0) {
-                String filePath = text.substring(idx).trim();
-                File facadeFile = new File(filePath);
-                if (facadeFile.exists()) {
-                    Image previewImage = FacadesHelper.getPreviewImage(facadeFile);
-                    if (previewImage != null) {
-                        return new Info(IconLoader.getIcon("/icons/preview-16.png"), null, new FacadePreviewAction(previewImage));
-                    }
+            File linkedFile = FilePathUtil.getLinkedFile((IDSFDefinition) element.getParent());
+            if (linkedFile != null) {
+                Image previewImage = FacadesHelper.getPreviewImage(linkedFile);
+                if (previewImage != null) {
+                    return new Info(IconLoader.getIcon("/icons/preview-16.png"), null, new FacadePreviewAction(previewImage));
                 }
             }
         }

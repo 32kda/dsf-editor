@@ -9,6 +9,8 @@ import com.intellij.psi.PsiElement;
 import com.onpositive.dsfedit.language.parser.psi.DSFObjectDef;
 import com.onpositive.dsfedit.language.parser.psi.DSFPolygonDef;
 import com.onpositive.dsfedit.language.parser.psi.DSFTypes;
+import com.onpositive.dsfedit.language.psi.IDSFDefinition;
+import com.onpositive.dsfedit.util.FilePathUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -20,18 +22,15 @@ public class DSFAnnotator implements Annotator {
             ASTNode valueNode = element.getNode().findChildByType(DSFTypes.VALUE_STRING);
             if (valueNode != null) {
                 String filePath = valueNode.getText();
-                VirtualFile virtualFile = element.getContainingFile().getVirtualFile();
-                if (virtualFile.isInLocalFileSystem()) {
-                    String path = virtualFile.getPath();
-                    if (path.indexOf('/') > 0) {
-                        File rootDir = new File(path).getParentFile().getParentFile();
-                        if (rootDir != null && !new File(rootDir, filePath).exists()) {
+                if (!filePath.trim().isEmpty()) {
+                    File linkedFile = FilePathUtil.getLinkedFile((IDSFDefinition) element);
+                    if (linkedFile == null) {
                             holder.newAnnotation(HighlightSeverity.WARNING,  "File not found").range(valueNode.getTextRange()).create();
-                        }
                     }
                 }
             }
         }
 
     }
+
 }
