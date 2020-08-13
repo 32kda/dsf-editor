@@ -24,7 +24,7 @@ public class FacadePreviewAction extends AbstractPreviewAction  {
                 graphic2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
                 graphic2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 graphic2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                graphic2d.drawImage(previewImage,0,0,originalSize.width,originalSize.height,0,0,scaledDimension.width,scaledDimension.height,Color.YELLOW, null);
+                graphic2d.drawImage(previewImage,0,0,scaledDimension.width,scaledDimension.height,0,0,originalSize.width,originalSize.height,Color.YELLOW, null);
             }
         };
         canvas.setPreferredSize(scaledDimension);
